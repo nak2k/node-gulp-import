@@ -1,4 +1,4 @@
-# gulp-import
+# gulp-import [![Build Status][travis-image]][travis-url]
 
 ## Usage
 
@@ -37,3 +37,6 @@ $ gulp
 ## License
 
 MIT
+
+[travis-url]: https://travis-ci.org/nak2k/node-gulp-import
+[travis-image]: https://travis-ci.org/nak2k/node-gulp-import.svg?branch=master
