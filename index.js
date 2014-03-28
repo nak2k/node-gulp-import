@@ -4,7 +4,7 @@
  * Copyright 2014-2014 Kengo Nakatsuka <kengo.nakatsuka@gmail.com>
  *
  */
-var path = require('path');
+var resolve = require('resolve');
 var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 var pkg = require('./package');
@@ -26,14 +26,21 @@ function processGlob(glob) {
   }
 
   var pkgName = glob.substring(0, index);
-  var pkgPath = glob.substring(index);
+  var path = glob.substring(index);
 
   var pkgDir;
   try {
-    pkgDir = path.dirname(require.resolve(pkgName + '/package.json'));
+    resolve.sync(pkgName, {
+      basedir: process.cwd(),
+      packageFilter: function(pkg, dir) {
+        pkgDir = dir;
+        pkg.main = 'package.json';
+        return pkg;
+      }
+    });
   } catch (e) {
     throw new PluginError(pkg.name, e);
   }
 
-  return pkgDir + pkgPath;
+  return pkgDir + path;
 }

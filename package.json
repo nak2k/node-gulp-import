@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/nak2k/node-gulp-import",
   "dependencies": {
+    "resolve": "~0.6.1",
     "gulp-util": "~2.2.14"
   },
   "devDependencies": {
